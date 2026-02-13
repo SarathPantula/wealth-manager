@@ -1,0 +1,5 @@
+@base = https://localhost:7xxx
+
+### Health / root
+GET {{base}}/
+Accept: application/json

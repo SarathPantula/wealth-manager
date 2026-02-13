@@ -1,0 +1,8 @@
+services:
+  wealth-manager.api:
+    image: wealth-manager.api
+    build:
+      context: .
+      dockerfile: wealth-manager.Api/Dockerfile
+    ports:
+      - "8080:8080"
