@@ -30,7 +30,7 @@ public class GoldAssetsController : ControllerBase
     {
         var list = await _db.GoldAssets
             .OrderByDescending(e => e.CreatedAt)
-            .Select(e => new GoldAssetResponse(e.Id, e.Value, e.Karat, e.CreatedAt, e.ModifiedAt))
+            .Select(e => new GoldAssetResponse(e.Id, e.Grams, e.Karat, e.CreatedAt, e.ModifiedAt))
             .ToListAsync(cancellationToken);
         return Ok(list);
     }
@@ -51,7 +51,7 @@ public class GoldAssetsController : ControllerBase
     }
 
     /// <summary>Creates a new gold asset.</summary>
-    /// <param name="request">The create request (value and karat).</param>
+    /// <param name="request">The create request (grams and karat).</param>
     /// <param name="cancellationToken">Cancellation token.</param>
     /// <returns>The created gold asset (201) with Location header; or 400 if invalid.</returns>
     [HttpPost]
@@ -63,7 +63,7 @@ public class GoldAssetsController : ControllerBase
     {
         var entity = new GoldAsset
         {
-            Value = request.Value,
+            Grams = request.Grams,
             Karat = request.Karat
         };
         _db.GoldAssets.Add(entity);
@@ -73,7 +73,7 @@ public class GoldAssetsController : ControllerBase
 
     /// <summary>Updates an existing gold asset by id.</summary>
     /// <param name="id">The gold asset identifier.</param>
-    /// <param name="request">The update request (value and karat).</param>
+    /// <param name="request">The update request (grams and karat).</param>
     /// <param name="cancellationToken">Cancellation token.</param>
     /// <returns>The updated gold asset if found; otherwise 404 Not Found.</returns>
     [HttpPut("{id:guid}")]
@@ -87,7 +87,7 @@ public class GoldAssetsController : ControllerBase
         var entity = await _db.GoldAssets.FindAsync([id], cancellationToken);
         if (entity is null)
             return NotFound();
-        entity.Value = request.Value;
+        entity.Grams = request.Grams;
         entity.Karat = request.Karat;
         await _db.SaveChangesAsync(cancellationToken);
         return Ok(ToResponse(entity));
@@ -111,5 +111,5 @@ public class GoldAssetsController : ControllerBase
     }
 
     private static GoldAssetResponse ToResponse(GoldAsset e) =>
-        new(e.Id, e.Value, e.Karat, e.CreatedAt, e.ModifiedAt);
+        new(e.Id, e.Grams, e.Karat, e.CreatedAt, e.ModifiedAt);
 }

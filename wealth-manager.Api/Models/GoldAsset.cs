@@ -8,8 +8,8 @@ public class GoldAsset
     /// <summary>Unique identifier for the gold asset.</summary>
     public Guid Id { get; set; }
 
-    /// <summary>Monetary or weight value of the gold asset.</summary>
-    public decimal Value { get; set; }
+    /// <summary>Weight of gold in grams. Used with current price to compute asset value.</summary>
+    public decimal Grams { get; set; }
 
     /// <summary>Purity of the gold in karats (BIS standard).</summary>
     public GoldKarat Karat { get; set; }

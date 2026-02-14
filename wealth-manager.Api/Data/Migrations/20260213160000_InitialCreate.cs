@@ -9,7 +9,7 @@ namespace wealth_manager.Api.Data.Migrations;
 /// <inheritdoc />
 /// <summary>
 /// Initial Code First schema. Must stay in sync with WealthManagerDbContext and WealthManagerDbContextModelSnapshot.
-/// GoldAsset: id (uuid, gen_random_uuid()), Value (numeric(18,2)), Karat (int), createdAt (timestamptz), modifiedAt (timestamptz, now()).
+/// GoldAsset: id (uuid, gen_random_uuid()), Grams (numeric(18,4)), Karat (int), createdAt (timestamptz), modifiedAt (timestamptz, now()).
 /// </summary>
 public partial class InitialCreate : Migration
 {
@@ -21,7 +21,7 @@ public partial class InitialCreate : Migration
             columns: table => new
             {
                 id = table.Column<Guid>(type: "uuid", nullable: false, defaultValueSql: "gen_random_uuid()"),
-                Value = table.Column<decimal>(type: "numeric(18,2)", nullable: false),
+                Grams = table.Column<decimal>(type: "numeric(18,4)", nullable: false),
                 Karat = table.Column<int>(type: "integer", nullable: false), // GoldKarat enum stored as int (BIS karats: 10,12,14,18,20,22,24)
                 createdAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                 modifiedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "now()")

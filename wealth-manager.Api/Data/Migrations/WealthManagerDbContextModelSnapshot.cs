@@ -31,9 +31,9 @@ partial class WealthManagerDbContextModelSnapshot : ModelSnapshot
                 .HasColumnType("uuid")
                 .HasColumnName("id");
 
-            b.Property<decimal>("Value")
-                .HasColumnType("numeric(18,2)")
-                .HasColumnName("Value");
+            b.Property<decimal>("Grams")
+                .HasColumnType("numeric(18,4)")
+                .HasColumnName("Grams");
 
             b.Property<GoldKarat>("Karat")
                 .HasConversion<int>()

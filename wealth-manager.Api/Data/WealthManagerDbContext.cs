@@ -27,9 +27,9 @@ public class WealthManagerDbContext(DbContextOptions<WealthManagerDbContext> opt
                 .HasDefaultValueSql("gen_random_uuid()")
                 .ValueGeneratedOnAdd();
             
-            entity.Property(e => e.Value)
-                .HasColumnName("Value")
-                .HasColumnType("decimal(18,2)")
+            entity.Property(e => e.Grams)
+                .HasColumnName("Grams")
+                .HasColumnType("decimal(18,4)")
                 .IsRequired();
             
             entity.Property(e => e.Karat)
